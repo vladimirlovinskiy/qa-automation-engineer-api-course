@@ -34,7 +34,7 @@ async def get_exercises_view(
     dependencies=[Depends(get_user_me)],
     response_model=GetExerciseResponse
 )
-async def gget_exercise_view(
+async def get_exercise_view(
         exercise_id: uuid.UUID,
         exercises_repository: Annotated[ExercisesRepository, Depends(get_exercises_repository)]
 ):
