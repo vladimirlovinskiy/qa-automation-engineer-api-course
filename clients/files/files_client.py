@@ -3,6 +3,7 @@ from typing import TypedDict
 from httpx import Response
 
 from clients.api_client import APIClient
+from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
 
 
 class CreateFileRequestDict(TypedDict):
@@ -55,3 +56,16 @@ class FileClient(APIClient):
             Response: Ответ от сервера в виде объекта httpx.Response
         """
         return self.delete(f"/api/v1/files/{file_id}")
+
+
+def get_files_client(user: AuthenticationUserDict) -> FileClient:
+    """
+    Функция создает эксземпляр FilesClient c уже настроенным HTTP-клиентом.
+
+    Args:
+        user (AuthenticationUserDict): _description_
+
+    Returns:
+        FileClient: Готовый к использованию FilesClient.
+    """
+    return FileClient(client=get_private_http_client(user))
