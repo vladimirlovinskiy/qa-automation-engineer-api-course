@@ -18,6 +18,9 @@ class UpdateUserRequestDict(TypedDict):
 
 
 class PrivateUsersClient(APIClient):
+    """
+    Клиент для работы с /api/v1/users
+    """
 
     def get_user_me_api(self) -> Response:
         """Метод получения птекущего пользователя.

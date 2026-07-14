@@ -62,9 +62,6 @@ def get_files_client(user: AuthenticationUserDict) -> FileClient:
     """
     Функция создает эксземпляр FilesClient c уже настроенным HTTP-клиентом.
 
-    Args:
-        user (AuthenticationUserDict): _description_
-
     Returns:
         FileClient: Готовый к использованию FilesClient.
     """

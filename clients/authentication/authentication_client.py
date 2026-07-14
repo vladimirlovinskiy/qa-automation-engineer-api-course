@@ -2,10 +2,15 @@ from typing import TypedDict
 
 from httpx import Response
 
+from clients.api_client import APIClient
 from clients.public_http_builder import get_public_http_client
-from 
+
 
 class Token(TypedDict):
+    """
+    Описание структуры аутентификационных токенов.
+    """
+
     tokenType: str
     accessToken: str
     refreshToken: str
@@ -22,10 +27,7 @@ class LoginRequestDict(TypedDict):
 
 class LoginResponseDict(TypedDict):
     """
-    Добавить описание
-
-    Args:
-        TypedDict (_type_): _description_
+    Описание структуры ответа аутентификации.
     """
 
     token: Token
@@ -39,7 +41,7 @@ class RefreshRequestDict(TypedDict):
     refreshToken: str
 
 
-class AuthenticationClient:
+class AuthenticationClient(APIClient):
     """Клиент для работы с /api/v1/authentication"""
 
     def login_api(self, request: LoginRequestDict) -> Response:
@@ -50,7 +52,7 @@ class AuthenticationClient:
             request (dict): Словарь с email и password
 
         Returns:
-            Response: _description_
+            Response: Ответ от сервера в виде объекта httpx.Response
         """
         return self.post("/api/v1/authentication/login", json=request)
 
@@ -75,8 +77,8 @@ class AuthenticationClient:
         Returns:
             _type_: _description_
         """
-        response = self.login_api(request)
-        return response.json()
+        response = self.login_api(request) # Отправляем запрос на аутентикацию
+        return response.json() # Извлекаем JSON из ответа
 
 
 def get_authentication_client() -> AuthenticationClient:

@@ -8,7 +8,7 @@ from clients.authentication.authentication_client import (
 )
 
 
-class AuthenticationUserDict(TypedDict):
+class AuthenticationUserDict(TypedDict): # Структура данных пользователя для авторизации
     email: str
     password: str
 
