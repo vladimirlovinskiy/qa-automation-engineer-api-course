@@ -11,10 +11,7 @@ class DeleteModel(AbstractModel):
 
     @classmethod
     async def delete(
-            cls,
-            session: AsyncSession,
-            clause_filter: ColumnExpressionType,
-            **kwargs
+        cls, session: AsyncSession, clause_filter: ColumnExpressionType, **kwargs
     ) -> None:
         query = delete(cls).filter_by(**kwargs)
         query = await build_query(query, clause_filter=clause_filter)

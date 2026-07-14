@@ -35,8 +35,8 @@ test_results = [
 failed_test = []
 
 for test in test_results:
-    if test['status'] != "passed":
-        failed_test.append(test['name'])
+    if test["status"] != "passed":
+        failed_test.append(test["name"])
 print(f"Упавшие тесты: {failed_test}")
 
 
@@ -55,4 +55,5 @@ while attemps < max_attempts:
         break
     print(f"Попытка: {attemps} Ждем...")
     attemps += 1
-else: print("Таймаут")
+else:
+    print("Таймаут")

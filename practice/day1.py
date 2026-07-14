@@ -4,7 +4,9 @@ method = "GET"
 expected_status_code = 200
 is_auth_required = False
 
-print(f"url: {url}, method: {method}, status code: {expected_status_code}, auth required: {is_auth_required}")
+print(
+    f"url: {url}, method: {method}, status code: {expected_status_code}, auth required: {is_auth_required}"
+)
 
 
 # Задание 2

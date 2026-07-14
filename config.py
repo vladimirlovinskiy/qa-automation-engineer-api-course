@@ -6,10 +6,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        extra='allow',
-        env_file='.env',
-        env_file_encoding='utf-8',
-        env_nested_delimiter='.',
+        extra="allow",
+        env_file=".env",
+        env_file_encoding="utf-8",
+        env_nested_delimiter=".",
     )
 
     app_host: HttpUrl
@@ -25,7 +25,7 @@ class Settings(BaseSettings):
 
     @classmethod
     def init(cls) -> Self:
-        storage_directory = DirectoryPath('./storage')
+        storage_directory = DirectoryPath("./storage")
         storage_directory.mkdir(exist_ok=True)
 
         return Settings(storage_directory=storage_directory)

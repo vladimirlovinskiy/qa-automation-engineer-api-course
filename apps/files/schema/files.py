@@ -11,7 +11,7 @@ class File(DatabaseSchema):
 
     @computed_field
     def url(self) -> HttpUrl:
-        return HttpUrl(f'{settings.app_host}static/{self.directory}/{self.filename}')
+        return HttpUrl(f"{settings.app_host}static/{self.directory}/{self.filename}")
 
 
 class CreateFileRequest(BaseModel):

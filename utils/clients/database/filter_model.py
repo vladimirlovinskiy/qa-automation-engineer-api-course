@@ -14,11 +14,11 @@ class FilterModel(AbstractModel):
 
     @classmethod
     async def get(
-            cls,
-            session: AsyncSession,
-            options: tuple[ExecutableOption, ...] | None = None,
-            clause_filter: ColumnExpressionType | None = None,
-            **kwargs
+        cls,
+        session: AsyncSession,
+        options: tuple[ExecutableOption, ...] | None = None,
+        clause_filter: ColumnExpressionType | None = None,
+        **kwargs
     ) -> Self | None:
         query = select(cls).filter_by(**kwargs)
         query = await build_query(query, options=options, clause_filter=clause_filter)
@@ -28,15 +28,15 @@ class FilterModel(AbstractModel):
 
     @classmethod
     async def filter(
-            cls,
-            session: AsyncSession,
-            limit: int | None = None,
-            offset: int | None = None,
-            options: tuple[ExecutableOption, ...] | None = None,
-            distinct: ColumnExpressionType | None = None,
-            order_by: ColumnExpressionType | None = None,
-            clause_filter: ColumnExpressionType | None = None,
-            **kwargs
+        cls,
+        session: AsyncSession,
+        limit: int | None = None,
+        offset: int | None = None,
+        options: tuple[ExecutableOption, ...] | None = None,
+        distinct: ColumnExpressionType | None = None,
+        order_by: ColumnExpressionType | None = None,
+        clause_filter: ColumnExpressionType | None = None,
+        **kwargs
     ) -> Sequence[Self]:
         query = select(cls).filter_by(**kwargs)
         query = await build_query(
@@ -46,7 +46,7 @@ class FilterModel(AbstractModel):
             options=options,
             distinct=distinct,
             order_by=order_by,
-            clause_filter=clause_filter
+            clause_filter=clause_filter,
         )
 
         result = await session.execute(query)

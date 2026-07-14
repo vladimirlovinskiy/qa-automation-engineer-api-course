@@ -8,11 +8,11 @@ config = {
     "base_url": "https://api.example.com",
     "timeout": 30,
     "auth_token": "your_auth_token_here",
-    "headers": {}
+    "headers": {},
 }
 
-config['headers']['Content-Type'] = "application/json"
-config['headers']['Accept'] = "application/json"
+config["headers"]["Content-Type"] = "application/json"
+config["headers"]["Accept"] = "application/json"
 
 for key, value in config.items():
     print(f"{key}: {value}")
@@ -33,13 +33,17 @@ api_responses = [
     {"url": "/todos", "status_code": 404, "response_time": 0.05},
 ]
 
-passed_pesponses = [response['url'] for response in api_responses if response['status_code'] == 200]
-response_time = [response['response_time'] for response in api_responses]
-failed_urls = [response['url'] for response in api_responses if response['status_code'] != 200]
+passed_pesponses = [
+    response["url"] for response in api_responses if response["status_code"] == 200
+]
+response_time = [response["response_time"] for response in api_responses]
+failed_urls = [
+    response["url"] for response in api_responses if response["status_code"] != 200
+]
 
-print(f'Количество успешных ответов (status_code == 200): {len(passed_pesponses)}')
-print(f'Среднее значение response_time: {sum(response_time)/len(response_time)}')
-print(f'Список URL запросов, у которых статус не 200: {failed_urls}')
+print(f"Количество успешных ответов (status_code == 200): {len(passed_pesponses)}")
+print(f"Среднее значение response_time: {sum(response_time)/len(response_time)}")
+print(f"Список URL запросов, у которых статус не 200: {failed_urls}")
 
 # Задание 3. List comprehension
 # Даны два списка одинаковой длины: endpoints и methods.
@@ -50,5 +54,5 @@ print("\nЗадание 3: List comprehension")
 endpoints = ["/users", "/posts", "/comments"]
 methods = ["GET", "POST", "GET"]
 
-result = [f'{method} {endpoint}' for method, endpoint in zip(methods,endpoints)]
+result = [f"{method} {endpoint}" for method, endpoint in zip(methods, endpoints)]
 print(result)

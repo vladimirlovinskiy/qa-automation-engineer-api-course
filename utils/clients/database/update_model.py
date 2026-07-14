@@ -12,10 +12,7 @@ class UpdateModel(AbstractModel):
 
     @classmethod
     async def update(
-            cls,
-            session: AsyncSession,
-            clause_filter: ColumnExpressionType,
-            **kwargs
+        cls, session: AsyncSession, clause_filter: ColumnExpressionType, **kwargs
     ) -> Self | None:
         query = cls.__table__.update().values(**kwargs).returning(cls)
         query = await build_query(query, clause_filter=clause_filter)

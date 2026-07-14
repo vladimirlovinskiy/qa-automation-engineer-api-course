@@ -11,7 +11,9 @@ from utils.clients.database.mixin_model import MixinModel
 class FilesModel(MixinModel):
     __tablename__ = "files"
 
-    id: Mapped[uuid.UUID] = Column(UUID, nullable=False, primary_key=True, default=uuid.uuid4)
+    id: Mapped[uuid.UUID] = Column(
+        UUID, nullable=False, primary_key=True, default=uuid.uuid4
+    )
     filename: Mapped[str] = Column(String(length=250), nullable=False)
     directory: Mapped[str] = Column(String(length=250), nullable=False)
 

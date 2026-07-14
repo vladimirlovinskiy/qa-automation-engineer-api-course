@@ -4,10 +4,5 @@ from utils.clients.database.filter_model import FilterModel
 from utils.clients.database.update_model import UpdateModel
 
 
-class MixinModel(
-    FilterModel,
-    CreateModel,
-    UpdateModel,
-    DeleteModel
-):
+class MixinModel(FilterModel, CreateModel, UpdateModel, DeleteModel):
     __abstract__ = True

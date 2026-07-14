@@ -16,13 +16,17 @@ class UsersRepository(BasePostgresRepository):
     model = UsersModel
 
     async def get_by_id(self, user_id: uuid.UUID) -> UsersModel | None:
-        return await self.model.get(self.session, clause_filter=(self.model.id == user_id,))
+        return await self.model.get(
+            self.session, clause_filter=(self.model.id == user_id,)
+        )
 
     async def get_by_email(self, email: str) -> UsersModel | None:
-        return await self.model.get(self.session, clause_filter=(self.model.email == email,))
+        return await self.model.get(
+            self.session, clause_filter=(self.model.email == email,)
+        )
 
     async def create(self, data: dict) -> UsersModel:
-        data['password'] = password_context.hash(data['password'])
+        data["password"] = password_context.hash(data["password"])
 
         return await self.model.create(self.session, **data)
 
@@ -32,7 +36,9 @@ class UsersRepository(BasePostgresRepository):
         )
 
     async def delete(self, user_id: uuid.UUID) -> None:
-        return await self.model.delete(self.session, clause_filter=(self.model.id == user_id,))
+        return await self.model.delete(
+            self.session, clause_filter=(self.model.id == user_id,)
+        )
 
     async def verify_user(self, email: str, password: str) -> UsersModel | None:
         user = await self.get_by_email(email)
@@ -46,6 +52,6 @@ class UsersRepository(BasePostgresRepository):
 
 
 async def get_users_repository(
-        session: Annotated[AsyncSession, Depends(get_database_session)]
+    session: Annotated[AsyncSession, Depends(get_database_session)],
 ) -> UsersRepository:
     return UsersRepository(session=session)

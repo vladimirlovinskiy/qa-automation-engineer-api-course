@@ -21,9 +21,15 @@ class CreateUserRequest(BaseModel):
 
 class UpdateUserRequest(BaseModel):
     email: EmailStr | None = Field(default=None, min_length=1, max_length=250)
-    last_name: str | None = Field(alias="lastName", default=None, min_length=1, max_length=50)
-    first_name: str | None = Field(alias="firstName", default=None, min_length=1, max_length=50)
-    middle_name: str | None = Field(alias="middleName", default=None, min_length=1, max_length=50)
+    last_name: str | None = Field(
+        alias="lastName", default=None, min_length=1, max_length=50
+    )
+    first_name: str | None = Field(
+        alias="firstName", default=None, min_length=1, max_length=50
+    )
+    middle_name: str | None = Field(
+        alias="middleName", default=None, min_length=1, max_length=50
+    )
 
 
 class GetUserResponse(BaseModel):

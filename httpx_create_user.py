@@ -10,7 +10,7 @@ payload = {
     "password": fake.password(),
     "lastName": fake.last_name(),
     "firstName": fake.first_name(),
-    "middleName": fake.name()
+    "middleName": fake.name(),
 }
 
 response = httpx.post("http://localhost:8000/api/v1/users", json=payload)

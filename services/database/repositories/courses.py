@@ -16,15 +16,21 @@ class CoursesRepository(BasePostgresRepository):
     async def filter(self, user_id: uuid.UUID) -> Sequence[CoursesModel]:
         return await self.model.filter(
             self.session,
-            options=(joinedload(self.model.preview_file), joinedload(self.model.created_by_user)),
-            clause_filter=(self.model.created_by_user_id == user_id,)
+            options=(
+                joinedload(self.model.preview_file),
+                joinedload(self.model.created_by_user),
+            ),
+            clause_filter=(self.model.created_by_user_id == user_id,),
         )
 
     async def get_by_id(self, course_id: uuid.UUID) -> CoursesModel | None:
         return await self.model.get(
             self.session,
-            options=(joinedload(self.model.preview_file), joinedload(self.model.created_by_user)),
-            clause_filter=(self.model.id == course_id,)
+            options=(
+                joinedload(self.model.preview_file),
+                joinedload(self.model.created_by_user),
+            ),
+            clause_filter=(self.model.id == course_id,),
         )
 
     async def create(self, data: dict) -> CoursesModel:
@@ -38,10 +44,12 @@ class CoursesRepository(BasePostgresRepository):
         return await self.get_by_id(course.id)
 
     async def delete(self, course_id: uuid.UUID) -> None:
-        return await self.model.delete(self.session, clause_filter=(self.model.id == course_id,))
+        return await self.model.delete(
+            self.session, clause_filter=(self.model.id == course_id,)
+        )
 
 
 async def get_courses_repository(
-        session: Annotated[AsyncSession, Depends(get_database_session)]
+    session: Annotated[AsyncSession, Depends(get_database_session)],
 ) -> CoursesRepository:
     return CoursesRepository(session=session)

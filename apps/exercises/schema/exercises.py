@@ -15,7 +15,9 @@ class Exercise(DatabaseSchema):
     min_score: int | None = Field(alias="minScore")
     order_index: int = Field(alias="orderIndex", default=0)
     description: str = Field(min_length=1)
-    estimated_time: str | None = Field(alias="estimatedTime", min_length=1, max_length=50)
+    estimated_time: str | None = Field(
+        alias="estimatedTime", min_length=1, max_length=50
+    )
 
 
 class CreateExerciseRequest(BaseModel):
@@ -25,15 +27,17 @@ class CreateExerciseRequest(BaseModel):
     min_score: int | None = Field(alias="minScore")
     order_index: int = Field(alias="orderIndex", default=0)
     description: str = Field(min_length=1)
-    estimated_time: str | None = Field(alias="estimatedTime", min_length=1, max_length=50)
+    estimated_time: str | None = Field(
+        alias="estimatedTime", min_length=1, max_length=50
+    )
 
-    @model_validator(mode='after')
+    @model_validator(mode="after")
     def validate_model(self) -> Self:
         if (self.max_score is None) or (self.min_score is None):
             return self
 
         if self.max_score < self.min_score:
-            raise ValueError('max score should not be less than min score')
+            raise ValueError("max score should not be less than min score")
 
         return self
 
@@ -44,15 +48,17 @@ class UpdateExerciseRequest(BaseModel):
     min_score: int | None = Field(alias="minScore", default=None)
     order_index: int | None = Field(alias="orderIndex", default=None)
     description: str | None = Field(default=None, min_length=1)
-    estimated_time: str | None = Field(alias="estimatedTime", default=None, min_length=1, max_length=50)
+    estimated_time: str | None = Field(
+        alias="estimatedTime", default=None, min_length=1, max_length=50
+    )
 
-    @model_validator(mode='after')
+    @model_validator(mode="after")
     def validate_model(self) -> Self:
         if (self.max_score is None) or (self.min_score is None):
             return self
 
         if self.max_score < self.min_score:
-            raise ValueError('max score should not be less than min score')
+            raise ValueError("max score should not be less than min score")
 
         return self
 

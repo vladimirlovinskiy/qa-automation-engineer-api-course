@@ -77,8 +77,8 @@ class AuthenticationClient(APIClient):
         Returns:
             _type_: _description_
         """
-        response = self.login_api(request) # Отправляем запрос на аутентикацию
-        return response.json() # Извлекаем JSON из ответа
+        response = self.login_api(request)  # Отправляем запрос на аутентикацию
+        return response.json()  # Извлекаем JSON из ответа
 
 
 def get_authentication_client() -> AuthenticationClient:

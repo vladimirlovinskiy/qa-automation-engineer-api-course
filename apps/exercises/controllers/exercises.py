@@ -2,14 +2,19 @@ import uuid
 
 from fastapi import HTTPException, status
 
-from apps.exercises.schema.exercises import GetExerciseResponse, Exercise, GetExercisesQuery, GetExercisesResponse, \
-    CreateExerciseRequest, UpdateExerciseRequest
+from apps.exercises.schema.exercises import (
+    GetExerciseResponse,
+    Exercise,
+    GetExercisesQuery,
+    GetExercisesResponse,
+    CreateExerciseRequest,
+    UpdateExerciseRequest,
+)
 from services.database.repositories.exercises import ExercisesRepository
 
 
 async def get_exercise(
-        exercise_id: uuid.UUID,
-        exercises_repository: ExercisesRepository
+    exercise_id: uuid.UUID, exercises_repository: ExercisesRepository
 ) -> GetExerciseResponse:
     exercise = await exercises_repository.get_by_id(exercise_id)
     if not exercise:
@@ -21,8 +26,7 @@ async def get_exercise(
 
 
 async def get_exercises(
-        query: GetExercisesQuery,
-        exercises_repository: ExercisesRepository
+    query: GetExercisesQuery, exercises_repository: ExercisesRepository
 ) -> GetExercisesResponse:
     exercises = await exercises_repository.filter(query.course_id)
 
@@ -32,8 +36,7 @@ async def get_exercises(
 
 
 async def create_exercise(
-        request: CreateExerciseRequest,
-        exercises_repository: ExercisesRepository
+    request: CreateExerciseRequest, exercises_repository: ExercisesRepository
 ) -> GetExerciseResponse:
     exercise = await exercises_repository.create(request.model_dump())
 
@@ -41,14 +44,18 @@ async def create_exercise(
 
 
 async def update_exercise(
-        exercise_id: uuid.UUID,
-        request: UpdateExerciseRequest,
-        exercises_repository: ExercisesRepository
+    exercise_id: uuid.UUID,
+    request: UpdateExerciseRequest,
+    exercises_repository: ExercisesRepository,
 ) -> GetExerciseResponse:
-    exercise = await exercises_repository.update(exercise_id, request.model_dump(exclude_unset=True))
+    exercise = await exercises_repository.update(
+        exercise_id, request.model_dump(exclude_unset=True)
+    )
 
     return GetExerciseResponse(exercise=Exercise.model_validate(exercise))
 
 
-async def delete_exercise(exercise_id: uuid.UUID, exercises_repository: ExercisesRepository):
+async def delete_exercise(
+    exercise_id: uuid.UUID, exercises_repository: ExercisesRepository
+):
     await exercises_repository.delete(exercise_id)

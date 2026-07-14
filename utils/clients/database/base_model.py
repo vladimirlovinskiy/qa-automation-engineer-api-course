@@ -4,5 +4,4 @@ from sqlalchemy.orm import DeclarativeBase
 metadata = MetaData()
 
 
-class Base(DeclarativeBase):
-    ...
+class Base(DeclarativeBase): ...

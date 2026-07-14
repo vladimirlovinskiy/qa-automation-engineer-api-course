@@ -81,7 +81,9 @@ class CoursesClient(APIClient):
         """
         return self.post("/api/v1/courses", json=request)
 
-    def update_course_api(self, course_id: str, request: UpdateCourseRequestDict) -> Response:
+    def update_course_api(
+        self, course_id: str, request: UpdateCourseRequestDict
+    ) -> Response:
         """
         Метод обновления курса.
 

@@ -6,7 +6,9 @@ from apps.files.schema.files import CreateFileRequest, GetFileResponse, File
 from services.database.repositories.files import FilesRepository
 
 
-async def get_file(file_id: uuid.UUID, files_repository: FilesRepository) -> GetFileResponse:
+async def get_file(
+    file_id: uuid.UUID, files_repository: FilesRepository
+) -> GetFileResponse:
     database_file = await files_repository.get_by_id(file_id)
     if not database_file:
         raise HTTPException(
@@ -17,9 +19,9 @@ async def get_file(file_id: uuid.UUID, files_repository: FilesRepository) -> Get
 
 
 async def create_file(
-        request: CreateFileRequest,
-        upload_file: UploadFile,
-        files_repository: FilesRepository
+    request: CreateFileRequest,
+    upload_file: UploadFile,
+    files_repository: FilesRepository,
 ) -> GetFileResponse:
     database_file = await files_repository.create(request.model_dump())
 

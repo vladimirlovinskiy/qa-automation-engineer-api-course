@@ -18,7 +18,9 @@ class ExercisesRepository(BasePostgresRepository):
         )
 
     async def get_by_id(self, exercise_id: uuid.UUID) -> ExercisesModel | None:
-        return await self.model.get(self.session, clause_filter=(self.model.id == exercise_id,))
+        return await self.model.get(
+            self.session, clause_filter=(self.model.id == exercise_id,)
+        )
 
     async def create(self, data: dict) -> ExercisesModel:
         return await self.model.create(self.session, **data)
@@ -29,10 +31,12 @@ class ExercisesRepository(BasePostgresRepository):
         )
 
     async def delete(self, exercise_id: uuid.UUID) -> None:
-        return await self.model.delete(self.session, clause_filter=(self.model.id == exercise_id,))
+        return await self.model.delete(
+            self.session, clause_filter=(self.model.id == exercise_id,)
+        )
 
 
 async def get_exercises_repository(
-        session: Annotated[AsyncSession, Depends(get_database_session)]
+    session: Annotated[AsyncSession, Depends(get_database_session)],
 ) -> ExercisesRepository:
     return ExercisesRepository(session=session)

@@ -13,46 +13,35 @@ class AbstractModel(Base):
     __abstract__ = True
 
     @classmethod
-    async def create(cls, session: AsyncSession, **kwargs) -> Self:
-        ...
+    async def create(cls, session: AsyncSession, **kwargs) -> Self: ...
 
     @classmethod
     async def update(
-            cls,
-            session: AsyncSession,
-            clause_filter: ColumnExpressionType,
-            **kwargs
-    ) -> Self:
-        ...
+        cls, session: AsyncSession, clause_filter: ColumnExpressionType, **kwargs
+    ) -> Self: ...
 
     @classmethod
     async def delete(
-            cls,
-            session: AsyncSession,
-            clause_filter: ColumnExpressionType,
-            **kwargs
-    ) -> None:
-        ...
+        cls, session: AsyncSession, clause_filter: ColumnExpressionType, **kwargs
+    ) -> None: ...
 
     @classmethod
     async def get(
-            cls,
-            session: AsyncSession,
-            options: tuple[ExecutableOption, ...] | None = None,
-            clause_filter: ColumnExpressionType | None = None,
-            **kwargs
-    ) -> Self | None:
-        ...
+        cls,
+        session: AsyncSession,
+        options: tuple[ExecutableOption, ...] | None = None,
+        clause_filter: ColumnExpressionType | None = None,
+        **kwargs
+    ) -> Self | None: ...
 
     @classmethod
     async def filter(
-            cls,
-            session: AsyncSession,
-            limit: int | None = None,
-            offset: int | None = None,
-            options: tuple[ExecutableOption, ...] | None = None,
-            order_by: ColumnExpressionType | None = None,
-            clause_filter: ColumnExpressionType | None = None,
-            **kwargs
-    ) -> Sequence[Self]:
-        ...
+        cls,
+        session: AsyncSession,
+        limit: int | None = None,
+        offset: int | None = None,
+        options: tuple[ExecutableOption, ...] | None = None,
+        order_by: ColumnExpressionType | None = None,
+        clause_filter: ColumnExpressionType | None = None,
+        **kwargs
+    ) -> Sequence[Self]: ...
