@@ -15,7 +15,7 @@ class Course(TypedDict):
 
     id: str
     title: str
-    maxScore: str
+    maxScore: int
     minScore: int
     description: str
     previewFile: File
@@ -33,7 +33,7 @@ class GetCoursesQueryDict(TypedDict):
 
 class CreateCourseRequestDict(TypedDict):
     """
-    Описание структуры запроса на обновление курса.
+    Описание структуры запроса на создание курса.
     """
 
     title: str
