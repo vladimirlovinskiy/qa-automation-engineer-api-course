@@ -1,9 +1,20 @@
 from typing import TypedDict
 
-from httpx import Response
+from httpx import Response, request
 
 from clients.api_client import APIClient
 from clients.private_http_builder import AuthenticationUserDict, get_private_http_client
+
+
+class File(TypedDict):
+    """
+    Описание структуры файла.
+    """
+
+    id: str
+    url: str
+    filename: str
+    directory: str
 
 
 class CreateFileRequestDict(TypedDict):
@@ -14,6 +25,14 @@ class CreateFileRequestDict(TypedDict):
     filename: str
     directory: str
     upload_file: str
+
+
+class CreateFileResponseDicr(TypedDict):
+    """
+    Описание структуры ответа создания файла.
+    """
+
+    file: File
 
 
 class FileClient(APIClient):
@@ -60,6 +79,10 @@ class FileClient(APIClient):
             Response: Ответ от сервера в виде объекта httpx.Response
         """
         return self.delete(f"/api/v1/files/{file_id}")
+
+    def create_file(self, file_id: CreateFileRequestDict) -> Response:
+        response = self.create_file_api(request)
+        return response.json()
 
 
 def get_files_client(user: AuthenticationUserDict) -> FileClient:

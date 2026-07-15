@@ -1,7 +1,7 @@
 import httpx
+from faker import Faker
 
 from tools.fakers import get_random_email
-from faker import Faker
 
 fake = Faker()
 
@@ -13,9 +13,7 @@ create_user_payload = {
     "middleName": fake.name(),
 }
 
-create_user_response = httpx.post(
-    "http://localhost:8000/api/v1/users", json=create_user_payload
-)
+create_user_response = httpx.post("http://localhost:8000/api/v1/users", json=create_user_payload)
 create_user_response_data = create_user_response.json()
 
 print("Create user data: ", create_user_response_data)
@@ -25,14 +23,10 @@ login_payload = {
     "password": create_user_payload["password"],
 }
 
-login_response = httpx.post(
-    "http://localhost:8000/api/v1/authentication/login", json=login_payload
-)
+login_response = httpx.post("http://localhost:8000/api/v1/authentication/login", json=login_payload)
 login_response_data = login_response.json()
 
-get_user_headers = {
-    "Authorization": f"Bearer {login_response_data['token']['accessToken']}"
-}
+get_user_headers = {"Authorization": f"Bearer {login_response_data['token']['accessToken']}"}
 
 get_user_response = httpx.get(
     f"http://localhost:8000/api/v1/users/{create_user_response_data['user']['id']}",
