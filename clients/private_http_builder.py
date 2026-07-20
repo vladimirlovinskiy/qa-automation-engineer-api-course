@@ -33,3 +33,5 @@ def get_private_http_client(user: AuthenticationUserDict) -> Client:
         base_url="http://localhost:8000",
         headers={"Authorization": f"Bearer {login_response['token']['accessToken']}"},
     )
+
+
