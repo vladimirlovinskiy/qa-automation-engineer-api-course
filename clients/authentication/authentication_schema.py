@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
-class Token(BaseModel):
+class TokenSchema(BaseModel):
     """
     Описание структуры аутентификационных токенов.
     """
@@ -27,7 +27,7 @@ class LoginResponseSchema(BaseModel):
     Описание структуры ответа аутентификации.
     """
 
-    token: Token
+    token: TokenSchema
 
 
 class RefreshRequestSchema(BaseModel):
