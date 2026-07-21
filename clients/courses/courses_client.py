@@ -23,7 +23,7 @@ class CoursesClient(APIClient):
         Метод получения списка курсов.
 
         Args:
-            query (GetCoursesQueryDict): Словарь с userId
+            query (GetCoursesQuerySchema): Словарь с userId
 
         Returns:
             Response: Ответ от сервера в виде объекта httpx.Response
@@ -47,12 +47,15 @@ class CoursesClient(APIClient):
         Метод создания курса.
 
         Args:
-            request (CreateCourseRequestDict): Словарь с title, maxScore, minScore, description, estimatedTime, previewField, createdByUserId.
+            request (CreateCourseRequestSchema): Словарь с title, maxScore, minScore, description, estimatedTime, previewField, createdByUserId.
 
         Returns:
             Response: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.post("/api/v1/courses", json=request.model_dump(by_alias=True))
+        return self.post(
+            "/api/v1/courses",
+            json=request.model_dump(by_alias=True),
+        )
 
     def update_course_api(self, course_id: str, request: UpdateCourseRequestSchema) -> Response:
         """
@@ -60,12 +63,15 @@ class CoursesClient(APIClient):
 
         Args:
             course_id (str): Идентификатор курса.
-            request (UpdateCourseRequestDict): Словарь с title, maxScore, minScore, description, estimatedTime
+            request (UpdateCourseRequestSchema): Словарь с title, maxScore, minScore, description, estimatedTime
 
         Returns:
             Response: Ответ от сервера в виде объекта httpx.Response
         """
-        return self.patch(f"/api/v1/courses/{course_id}", json=request.model_dump(by_alias=True))
+        return self.patch(
+            f"/api/v1/courses/{course_id}",
+            json=request.model_dump(by_alias=True),
+        )
 
     def delete_course_api(self, course_id: str) -> Response:
         """

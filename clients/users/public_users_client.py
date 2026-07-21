@@ -15,7 +15,7 @@ class PublicUsersClient(APIClient):
         Метод для создания пользователя.
 
         Args:
-            request (TypedDict): Словарь с email, password, lastName, firstName, middleName
+            request (CreateUserRequestSchema): Словарь с email, password, lastName, firstName, middleName
 
         Returns:
             Request: Ответ от сервера в виде объекта httpx.Response

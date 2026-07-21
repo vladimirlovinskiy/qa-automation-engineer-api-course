@@ -47,12 +47,12 @@ print("Create file data:", create_file_response)
 # Создаем курс
 create_course_request = CreateCourseRequestSchema(
     title="Python",
-    maxScore=100,
-    minScore=10,
+    max_score=100,
+    min_score=10,
     description="Python API courses",
-    estimatedTime="2 week",
-    previewFileId=create_file_response.file.id,
-    createdByUserId=create_user_response.user.id,
+    estimated_time="2 week",
+    preview_file_id=create_file_response.file.id,
+    created_by_user_id=create_user_response.user.id,
 )
 create_course_response = courses_client.create_course(create_course_request)
 print("Create course data:", create_course_response)
@@ -61,11 +61,11 @@ print("Create course data:", create_course_response)
 create_exercise_request = CreateExerciseRequestSchema(
     title="Exercise 1",
     courseId=create_course_response.course.id,
-    maxScore=5,
-    minScore=1,
-    orderIndex=0,
+    max_score=5,
+    min_score=1,
+    order_index=0,
     description="Exercise 1",
-    estimatedTime="5 minutes",
+    estimated_time="5 minutes",
 )
 create_exercise_response = exercises_client.create_exercise(create_exercise_request)
 print("Create exercise data:", create_exercise_response)

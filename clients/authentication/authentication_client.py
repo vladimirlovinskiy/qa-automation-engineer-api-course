@@ -32,7 +32,7 @@ class AuthenticationClient(APIClient):
         Метод обновляет токен авторизации
 
         Args:
-            request (RefreshRequestDict): Словарь с refreshToken
+            request (RefreshRequestSchema): Словарь с refreshToken
 
         Returns:
             Response: Ответ от сервера в виде объекта httpx.Response

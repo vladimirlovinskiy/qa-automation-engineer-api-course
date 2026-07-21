@@ -36,7 +36,7 @@ class PrivateUsersClient(APIClient):
 
         Args:
             user_id (str): Идентификатор пользователя.
-            request (UpdateUserRequestDict): Словарь с email, lastName, firstName, middleName
+            request (UpdateUserRequestSchema): Словарь с email, lastName, firstName, middleName
 
         Returns:
             Response: Ответ от сервера в виде объекта httpx.Response

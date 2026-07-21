@@ -17,7 +17,7 @@ def get_private_http_client(user: AuthenticationUserSchema) -> Client:
     Функция создает экземпляр httpx.Client с аутентифкацией пользователя.
 
     Args:
-        user (AuthenticationUserDict): Объект AuthenticationUserSchema с email и паролем пользователя.
+        user (AuthenticationUserSchema): Объект AuthenticationUserSchema с email и паролем пользователя.
 
     Returns:
         Client: Готовый к использованию объект httpx.Client с установленным заголовком Authorization.

@@ -8,12 +8,13 @@ class CourseSchema(BaseModel):
     """
     Описание структуры курса.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     id: str
     title: str
-    maxScore: int
-    minScore: int
+    max_score: int = Field(alias="maxScore")
+    min_score: int = Field(alias="minScore")
     description: str
     preview_file: FileSchema = Field(alias="previewFile")
     estimated_time: str = Field(alias="estimatedTime")
@@ -25,6 +26,8 @@ class GetCoursesQuerySchema(BaseModel):
     Описание структуры запроса на получение списка курсов.
     """
 
+    model_config = ConfigDict(populate_by_name=True)
+
     user_id: str = Field(alias="userId")
 
 
@@ -32,6 +35,7 @@ class CreateCourseRequestSchema(BaseModel):
     """
     Описание структуры запроса на создание курса.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     title: str
@@ -55,6 +59,7 @@ class UpdateCourseRequestSchema(BaseModel):
     """
     Описание структуры запроса на обновление курса.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     title: str | None
