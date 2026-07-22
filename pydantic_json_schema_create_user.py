@@ -1,16 +1,16 @@
 from clients.users.public_users_client import get_public_users_client
 from pydantic_create_user import CreateUserRequestSchema, CreateUserResponseSchema
 from tools.assertions.schema import validate_json_schema
-from tools.fakers import get_random_email
+from tools.fakers import fake
 
 public_users_client = get_public_users_client()
 
 create_user_request = CreateUserRequestSchema(
-    email=get_random_email(),
-    password="password",
-    last_name="lastname",
-    first_name="firstname",
-    middle_name="middlename",
+    email=fake.email(),
+    password=fake.password(),
+    last_name=fake.last_name(),
+    first_name=fake.first_name(),
+    middle_name=fake.middle_name(),
 )
 
 create_user_response = public_users_client.create_user_api(create_user_request)
@@ -21,3 +21,4 @@ validate_json_schema(
     instance=create_user_response.json(),
     schema=create_user_response_schema,
 )
+print(create_user_response_schema)
