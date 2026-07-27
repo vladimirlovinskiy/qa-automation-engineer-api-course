@@ -1,7 +1,7 @@
-from email.policy import default
-
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
+
 from tools.fakers import fake
+
 
 class UserSchema(BaseModel):
     """

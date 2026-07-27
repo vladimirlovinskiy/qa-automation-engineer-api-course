@@ -1,8 +1,6 @@
 import httpx
 from faker import Faker
 
-from tools.fakers import fake
-
 fake = Faker()
 
 create_user_payload = {
@@ -15,7 +13,7 @@ create_user_payload = {
 
 create_user_response = httpx.post("http://localhost:8000/api/v1/users", json=create_user_payload)
 create_user_response_data = create_user_response.json()
-
+print(f"Create user response: {create_user_response.text}")
 print("Create user data: ", create_user_response_data)
 
 login_payload = {
